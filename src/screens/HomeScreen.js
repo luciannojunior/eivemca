@@ -45,15 +45,19 @@ class HomeScreen extends React.Component {
                 <Text style={{fontSize: 44}}>Ei! Vem Cá(Logo)</Text>
                 <Text style={styles.welcome}>Bem Vindo!</Text>
                 <View style={styles.row}>
-                    <TouchableOpacity style={styles.buttonStyle}>
-                        <Text style={styles.textStyle}>
-                            Comprador
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('Search')}
+                        style={styles.buttonStyle}>
+                            <Text style={styles.textStyle}>
+                                Comprador
+                            </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyle}>
-                        <Text style={styles.textStyle}>
-                            Vendedor
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('SellerMain')}
+                        style={styles.buttonStyle}>
+                            <Text style={styles.textStyle}>
+                                Vendedor
+                            </Text>
                     </TouchableOpacity>
                 </View>
             </View>

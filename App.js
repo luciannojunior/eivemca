@@ -1,16 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { RootNavigator } from './src/navigation/RootNavigator';
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <RootNavigator />
-      </View>
-    );
-  }
-}
+import HomeScreen from './src/screens/HomeScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,3 +11,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <RootNavigator />
+    );
+  }
+}
