@@ -7,7 +7,6 @@ import ProfileHeader from "../../components/ProfileHeader";
 const styles = StyleSheet.create({
     mainContent: {
         flex: 1,
-        marginTop: 10,
         backgroundColor: '#fff'
     },
     title: {

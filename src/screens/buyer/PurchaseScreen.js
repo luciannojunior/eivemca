@@ -1,13 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { List, ListItem, Button, Input, Icon } from 'react-native-elements';
+import { List, ListItem, Button, Input } from 'react-native-elements';
 import ProfileHeader from "../../components/ProfileHeader";
 import Header from "../../components/Header";
 
 const styles = StyleSheet.create({
     mainContent: {
         flex: 1,
-        marginTop: 10,
         backgroundColor: '#fff'
     },
     title: {
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         bottom: 0
-    },
+    }
 });
 
 const products = [
