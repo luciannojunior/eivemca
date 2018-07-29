@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
     viewStyle: {
         backgroundColor: '#009900',
         width: '100%',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        height: 80,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        height: "10%",
         elevation: 1,
         position: 'relative'
     },
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#000',
         fontWeight: 'bold',
-        padding: 20
+        paddingLeft: 20,
+        marginTop: 20
     }
 });
 

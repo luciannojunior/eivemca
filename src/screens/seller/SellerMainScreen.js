@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
+import Header from "../../components/Header";
 import ProfileHeader from "../../components/ProfileHeader";
 
 const styles = StyleSheet.create({
@@ -23,9 +24,12 @@ class SellerMainScreen extends React.Component {
     };
     
     render() {
+        const seller = {name: 'Rafael'};
+
         return (
             <View style={styles.mainContent}>
-                <ProfileHeader style={styles.header} />
+                <Header onPressBack={() => this.props.navigation.navigate('Home')} />
+                <ProfileHeader seller={seller} />
                 <View style={{ width: "80%", justifyContent: 'center', marginTop: 20 }}>
                     <View style={styles.inputContainer}>
                         <Text
