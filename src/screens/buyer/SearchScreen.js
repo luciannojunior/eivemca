@@ -2,6 +2,8 @@ import React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { SearchBar, List, ListItem, Icon } from 'react-native-elements';
 
+import Header from "../../components/Header";
+
 const styles = StyleSheet.create({
     mainContent: {
         flex: 1,
@@ -67,6 +69,7 @@ class SearchScreen extends React.Component {
     render() {
         return (
             <View style={styles.mainContent}>
+            <Header />
               <View style={styles.inputContainer}>
                 <Text style={styles.font16}>Buscar </Text>
                 <TextInput

@@ -26,8 +26,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     productList: {
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
         fontSize: 18
+    },
+    productPrice: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 18,
+        fontWeight: 'bold'
     }
 });
 
@@ -37,7 +44,7 @@ class SellerProductListScreen extends React.Component {
     };
     
     render() {
-        const products = ['Pamonha','Canjica','Milho','Mangunza','Xerem'];
+        const products = [{nome: 'Pamonha', preco: 2.62},{nome: 'Canjica', preco: 2.62},{nome: 'Milho', preco: 2.62},{nome: 'Mangunza', preco: 2.62},{nome: 'Xerem', preco: 2.62}];
 
         return (
             <View style={styles.mainContent}>
@@ -50,7 +57,8 @@ class SellerProductListScreen extends React.Component {
                             {products.map(product => {
                                 return (
                                     <View style={styles.row}>
-                                        <Text style={styles.productList}>{product}</Text>
+                                        <Text style={styles.productList}>{product.nome}</Text>
+                                        <Text style={styles.productPrice}> - R$ {product.preco}</Text>
                                     </View>
                                 );
                             })}

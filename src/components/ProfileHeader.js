@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        height: "20%",
+        height: "40%",
         elevation: 1,
         position: 'relative'
     },
     textStyle: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold'
     }
 });
