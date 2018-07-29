@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
+import * as firebase from "firebase";
 
 import Header from '../../components/Header';
 
@@ -42,9 +43,25 @@ class SellerProductListScreen extends React.Component {
     static navigationOptions = {
         header: null
     };
+
+    state = {
+        products: []
+    };
+
+    componentWillMount() {
+        const ref = firebase.database().ref('vendedor/produtos');
+        ref.on('value', (value) => {
+            this.setState({products: Object.values(value.val() || {})});
+        });
+
+        // ref.on('child_added', (data) => {
+        //     this.setState({products: [...this.state.products, data.val()]})
+        //   });
+          
+    }
     
     render() {
-        const products = [{nome: 'Pamonha', preco: 2.62},{nome: 'Canjica', preco: 2.62},{nome: 'Milho', preco: 2.62},{nome: 'Mangunza', preco: 2.62},{nome: 'Xerem', preco: 2.62}];
+        const { products } = this.state;
 
         return (
             <View style={styles.mainContent}>
