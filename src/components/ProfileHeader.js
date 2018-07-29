@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     textStyle: {
         fontSize: 26,
         fontWeight: 'bold'
+    },
+    dateStyle: {
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 });
 
@@ -21,6 +25,7 @@ const ProfileHeader = (props) => {
     return(
         <View style={styles.viewStyle}>
             <Text style={styles.textStyle}>{props.seller.name}</Text>
+            <Text style={styles.dateStyle}>{props.seller.date}</Text>
         </View>
     );
 }
