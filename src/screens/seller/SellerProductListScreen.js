@@ -1,14 +1,21 @@
 import React from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 
+import Header from '../../components/Header';
+
 const styles = StyleSheet.create({
     mainContent: {
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
     },
     mainTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginTop: 20
+    },
+    secondaryTitle: {
         fontSize: 28,
         fontWeight: 'bold'
     },
@@ -34,19 +41,22 @@ class SellerProductListScreen extends React.Component {
 
         return (
             <View style={styles.mainContent}>
+                <Header onPressBack={() => this.props.navigation.navigate('SellerMain')} />
                 <Text style={styles.mainTitle}>Produtos</Text>
-                <Text style={styles.mainTitle}>Cadastrados</Text>
-                <ScrollView style={{ alignItems: 'flex-start' }}>
-                    <View style={styles.padding10}>
-                        {products.map(product => {
-                            return (
-                                <View style={styles.row}>
-                                    <Text style={styles.productList}>{product}</Text>
-                                </View>
-                            );
-                        })}
-                    </View>
-                </ScrollView>
+                <Text style={styles.secondaryTitle}>Cadastrados</Text>
+                <View style={{ width: "80%"}}>
+                    <ScrollView>
+                        <View style={styles.padding10}>
+                            {products.map(product => {
+                                return (
+                                    <View style={styles.row}>
+                                        <Text style={styles.productList}>{product}</Text>
+                                    </View>
+                                );
+                            })}
+                        </View>
+                    </ScrollView>
+                </View>
             </View>
         );
     }
