@@ -1,22 +1,30 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { List, ListItem, Button, Input, Icon } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
     mainContent: {
         flex: 1,
-        marginTop: 10
+        marginTop: 10,
+        backgroundColor: '#fff'
     },
     title: {
         fontSize: 20,
         marginLeft: 15
     },
-    addToCartButton: {
+    inputContainer: {
+        marginLeft: "3%",
+        marginBottom: 7,
+        flexDirection: 'row'
+    },
+    bottomView:{
+        width: '100%',
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
         position: 'absolute',
-        bottom:0,
-        left:0    
-    }
+        bottom: 0
+    },
 });
 
 const products = [
@@ -38,6 +46,14 @@ const products = [
 ]
 
 class PurchaseScreen extends React.Component {
+    static navigationOptions = {
+        header: null
+    };
+
+    onAmountChange(productIndex, amount) {
+        products[productIndex].amount = amount;
+    }
+
     render() {
         return (
             <View style={styles.mainContent}>
@@ -46,6 +62,10 @@ class PurchaseScreen extends React.Component {
                   {
                     products.map((item, i) => (
                       <ListItem
+                        textInput={true}
+                        textInputPlaceholder={'Quantidade'}
+                        textInputKeyboardType={'numeric'}
+                        textInputOnChangeText={(amount) => this.onAmountChange(i, amount)}
                         key={i}
                         title={item.name + ' (R$ ' + item.price + ')'}
                         subtitle={item.description}
@@ -54,10 +74,14 @@ class PurchaseScreen extends React.Component {
                     ))
                   }
                 </List>
-                <Button
-                  style={styles.addToCartButton}
-                  title='Adicionar à cesta'
-                />
+                <View style={ styles.bottomView}>
+                    <Button
+                        textStyle={{color: 'black'}}
+                        transparent={true}
+                        title='Adicionar à cesta'
+                        leftIcon={{name: 'shopping-cart', color: 'green'}}
+                    />
+                </View>
             </View>
         );
     }
