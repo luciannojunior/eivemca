@@ -53,11 +53,6 @@ class SellerProductListScreen extends React.Component {
         ref.on('value', (value) => {
             this.setState({products: Object.values(value.val() || {})});
         });
-
-        // ref.on('child_added', (data) => {
-        //     this.setState({products: [...this.state.products, data.val()]})
-        //   });
-          
     }
     
     render() {
