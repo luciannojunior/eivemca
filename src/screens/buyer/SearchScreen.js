@@ -3,39 +3,9 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import { SearchBar, List, ListItem } from 'react-native-elements';
 
 const styles = StyleSheet.create({
-    textarea: {
-        height: 100,
-        width: "100%",
-        borderColor: 'gray',
-        borderWidth: 1,
-        fontSize: 14,
-        borderRadius: 4
-    },
-    inputText: {
-        height: 50,
-        width: "80%",
-        borderColor: 'gray',
-        fontSize: 14,
-        borderRadius: 4,
-        borderColor: 'black',
-        borderRadius: 10,
-        borderWidth: 1
-    },
     mainContent: {
         flex: 1,
-        marginTop: 70,
-        backgroundColor: '#fff'
-    },
-    font16: {
-        fontSize: 18,
-        marginRight: 5,
-        marginTop: 10,
-        marginLeft: 20
-    },
-    inputContainer: {
-        width: "80%",
-        marginBottom: 15,
-        flexDirection: 'row'
+        marginTop: 70    
     }
 });
 
