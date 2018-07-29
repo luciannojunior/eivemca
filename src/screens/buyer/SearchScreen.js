@@ -1,13 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
-import { SearchBar, List, ListItem, Icon } from 'react-native-elements';
-
+import { List, ListItem, Icon } from 'react-native-elements';
 import Header from "../../components/Header";
 
 const styles = StyleSheet.create({
     mainContent: {
-        flex: 1,
-        marginTop: 70    
+        flex: 1
     },
     inputText: {
         height: 50,
@@ -18,16 +16,16 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         marginRight: "2.5%",
-        height: 40
+        height: 45
     },
     font16: {
-        fontSize: 18,
+        fontSize: 20,
         marginRight: "2%",
         marginTop: 8
     },
     inputContainer: {
-        marginLeft: "3%",
-        marginBottom: 7,
+        margin: "3%",
+        marginTop: 10,
         flexDirection: 'row'
     }
 });
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
 
 const sellers = [
   {
-    name: 'Vendedor de pamonha'
+    name: 'Vendedor dee pamonha'
   },
   {
     name: 'Vendedor de cocada'
@@ -69,9 +67,9 @@ class SearchScreen extends React.Component {
     render() {
         return (
             <View style={styles.mainContent}>
-            <Header />
+              <Header />
               <View style={styles.inputContainer}>
-                <Text style={styles.font16}>Buscar </Text>
+                <Text style={styles.font16}>Buscar: </Text>
                 <TextInput
                     style={styles.inputText}
                     onChangeText={(text) => this.onTextChange(text)}
@@ -79,6 +77,7 @@ class SearchScreen extends React.Component {
                 <Icon
                   name='search'
                   color='#000000'
+                  size={30}
                   onPress={() => this.search()} />
               </View>
               <List>

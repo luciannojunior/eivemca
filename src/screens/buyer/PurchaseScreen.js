@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { List, ListItem, Button, Input, Icon } from 'react-native-elements';
+import ProfileHeader from "../../components/ProfileHeader";
+import Header from "../../components/Header";
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -43,7 +45,9 @@ const products = [
         description: 'Na brasa',
         price: 2.50
     }
-]
+];
+
+const seller = {name: 'Seu chico'};
 
 class PurchaseScreen extends React.Component {
     static navigationOptions = {
@@ -57,11 +61,13 @@ class PurchaseScreen extends React.Component {
     render() {
         return (
             <View style={styles.mainContent}>
-                <Text style={styles.title}>Seu chico</Text>
+                <Header onPressBack={() => this.props.navigation.navigate('Home')} />
+                <ProfileHeader seller={seller} />
                 <List>
                   {
                     products.map((item, i) => (
                       <ListItem
+                        leftIcon={{name: 'megaphone', color: 'green', type: 'entypo'}}
                         textInput={true}
                         textInputPlaceholder={'Quantidade'}
                         textInputKeyboardType={'numeric'}
