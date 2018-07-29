@@ -57,6 +57,7 @@ class CreateProductScreen extends React.Component {
                             style={styles.inputText}
                             onChangeText={(name) => this.setState({name})}
                             value={this.state.name}
+                            underlineColorAndroid= 'rgba(0,0,0,1)'
                         />
                     </View>
                     <View style={styles.inputContainer}>
@@ -65,6 +66,7 @@ class CreateProductScreen extends React.Component {
                             style={styles.inputText}
                             onChangeText={(price) => this.setState({price})}
                             value={this.state.price}
+                            underlineColorAndroid= 'rgba(0,0,0,1)'
                         />
                     </View>
                     <View style={styles.inputContainer}>

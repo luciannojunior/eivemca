@@ -11,8 +11,7 @@ import ConfirmPurchaseScreen from "../screens/buyer/ConfirmPurchaseScreen";
 export const RootNavigator = createStackNavigator(
     {
         Home: HomeScreen,
-        // SellerMain: SellerMainScreen,
-        SellerMain: PurchaseScreen,
+        SellerMain: SellerMainScreen,
         CreateProduct: CreateProductScreen,
         ProductList: SellerProductListScreen,
         Search: SearchScreen,
