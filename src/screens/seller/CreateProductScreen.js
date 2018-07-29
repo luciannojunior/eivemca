@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   submitContainer: {
     alignItems: "center",
     marginTop: 40,
-    flexDirection: 'row',
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "center"
   }
 });
 
@@ -98,12 +98,19 @@ class CreateProductScreen extends React.Component {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.font16}>Preço</Text>
-            <TextInput
-              style={styles.inputText}
-              onChangeText={price => this.setState({ price })}
-              value={this.state.price}
+            <Text style={styles.font16}>Preço</Text>    
+            <NumberFormat
               underlineColorAndroid="rgba(0,0,0,1)"
+              style={styles.inputText}
+              value={this.state.price}
+              thousandSeparator={true}
+              prefix={"R$"}
+              onValueChange={values => {
+                const { formattedValue: price, value } = values;
+                // formattedValue = $2,223
+                // value ie, 2223
+                this.setState({ price });
+              }}
             />
           </View>
           <View style={styles.inputContainer}>
