@@ -2,6 +2,7 @@ import React from "react";
 import { Alert, View, StyleSheet, Text, TextInput } from "react-native";
 import Header from "../../components/Header";
 import * as firebase from "firebase";
+import { Icon } from "react-native-elements";
 
 const styles = StyleSheet.create({
   textarea: {
@@ -33,7 +34,9 @@ const styles = StyleSheet.create({
   },
   submitContainer: {
     alignItems: "center",
-    marginTop: 40
+    marginTop: 40,
+    flexDirection: 'row',
+    justifyContent: "center",
   }
 });
 
@@ -118,6 +121,12 @@ class CreateProductScreen extends React.Component {
             />
           </View>
           <View style={styles.submitContainer}>
+            <Icon
+              style={{ marginRight: 5 }}
+              name="megaphone"
+              type="entypo"
+              color="green"
+            />
             <Text style={{ fontSize: 20 }} onPress={this.cadastrarProduto}>
               Cadastrar Produto
             </Text>
