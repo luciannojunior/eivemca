@@ -5,29 +5,22 @@ const styles = StyleSheet.create({
     viewStyle: {
         backgroundColor: '#009900',
         width: '100%',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        height: "30%",
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: "20%",
         elevation: 1,
         position: 'relative'
     },
     textStyle: {
-        fontSize: 20,
-        color: '#000',
-        fontWeight: 'bold',
-        padding: 20,
-        marginTop: 10
+        fontSize: 24,
+        fontWeight: 'bold'
     }
 });
 
 const ProfileHeader = (props) => {
     return(
         <View style={styles.viewStyle}>
-            <Text
-                onPress={() => props.onPressBack()}
-                style={styles.textStyle}>
-                    Back
-            </Text>
+            <Text style={styles.textStyle}>{props.seller.name}</Text>
         </View>
     );
 }
