@@ -1,5 +1,12 @@
 import React from "react";
-import { Alert, View, StyleSheet, Text, ScrollView } from "react-native";
+import {
+  Alert,
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView
+} from "react-native";
 import { List, ListItem, Button, Input } from "react-native-elements";
 import * as firebase from "firebase";
 import Header from "../../components/Header";
@@ -21,7 +28,7 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     width: "100%",
-    height: 60,
+    height: 70,
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
@@ -33,6 +40,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 });
+
 const products = [
   {
     name: "Pamonhaaa",
@@ -78,9 +86,9 @@ class ReviewPurchaseScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
-  
+
   state = {
-      pedido: null
+    pedido: null
   };
 
   componentWillMount() {
@@ -90,8 +98,8 @@ class ReviewPurchaseScreen extends React.Component {
       .database()
       .ref("pedidos/" + key)
       .on("value", snap => {
-          console.log('voltou');
-          console.log(snap.val());
+        console.log("voltou");
+        console.log(snap.val());
         this.setState({ pedido: snap.val() });
       });
   }
@@ -111,44 +119,59 @@ class ReviewPurchaseScreen extends React.Component {
       [
         {
           text: "OK",
-          onPress: () => this.props.navigation.navigate("SellerMain")
+          onPress: () => this.props.navigation.navigate("ConfirmPurchase")
         }
       ],
       { cancelable: false }
     );
-    this.props.navigation.navigate("ConfirmPurchase");
   }
 
   render() {
-    const formataPreco = (preco) => {
-        if (preco == 0){
-            preco = "000";
-        }
-        const reverted = ("" + preco).split("").reverse().join("");
-        return "R$ " + (reverted.substring(0,2) + "," + reverted.substring(2,reverted.length)).split("").reverse().join("");
-    }
-
-    const getTotal = (produtos) => {
-        return produtos.map(produto => produto.subtotal).reduce((a,b) => a + b);
+    const formataPreco = preco => {
+      if (preco == 0) {
+        preco = "000";
+      }
+      const reverted = ("" + preco)
+        .split("")
+        .reverse()
+        .join("");
+      return (
+        "R$ " +
+        (
+          reverted.substring(0, 2) +
+          "," +
+          reverted.substring(2, reverted.length)
+        )
+          .split("")
+          .reverse()
+          .join("")
+      );
+    };
+    const getTotal = produtos => {
+      return produtos.map(produto => produto.subtotal).reduce((a, b) => a + b);
     };
 
     if (!this.state || !this.state.pedido) return null;
 
-    console.log('entrou no render');
+    console.log("entrou no render");
     console.log(this.state.pedido);
 
     let { produtos, total } = this.state.pedido;
     produtos = Object.values(produtos);
 
     return (
-        <View style={styles.mainContent}>
+      <KeyboardAvoidingView behaviour={"padding"} style={styles.mainContent}>
         <Header onPressBack={() => this.props.navigation.navigate("Home")} />
         <ProfileHeader seller={seller} />
         <ScrollView style={{ marginBottom: 65 }}>
           <List>
             {produtos.map((produto, i) => (
               <ListItem
-                leftIcon={{ name: "megaphone", color: "green", type: "entypo" }}
+                leftIcon={{
+                  name: "megaphone",
+                  color: "green",
+                  type: "entypo"
+                }}
                 key={i}
                 title={produto.nome + " (" + formataPreco(produto.preco) + ")"}
                 textInput={true}
@@ -173,7 +196,7 @@ class ReviewPurchaseScreen extends React.Component {
             onPress={() => this.confirmOrder()}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, View, StyleSheet, Text, TextInput } from "react-native";
+import { Alert, View, StyleSheet, Text, TextInput, KeyboardAvoidingView } from "react-native";
 import Header from "../../components/Header";
 import * as firebase from "firebase";
 import { Icon } from "react-native-elements";
@@ -83,7 +83,7 @@ class CreateProductScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainContent}>
+      <KeyboardAvoidingView behavior={'padding'} style={styles.mainContent}>
         <Header
           onPressBack={() => this.props.navigation.navigate("SellerMain")}
         />
@@ -132,7 +132,7 @@ class CreateProductScreen extends React.Component {
             </Text>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, View, StyleSheet, Text, ScrollView } from "react-native";
+import { Alert, View, StyleSheet, Text, ScrollView, KeyboardAvoidingView } from "react-native";
 import { List, ListItem, Button, Input } from "react-native-elements";
 import * as firebase from "firebase";
 import ProfileHeader from "../../components/ProfileHeader";
@@ -44,10 +44,40 @@ const products = [
     name: "Milho assado",
     description: "Na brasa",
     price: 2.5
-  }
+  },
+    {
+        name: "Pamonha",
+        description: "Bem quentinha",
+        price: 1.5
+    },
+    {
+        name: "Milho cozido",
+        description: "Muito bom!",
+        price: 2.0
+    },
+    {
+        name: "Milho assado",
+        description: "Na brasa",
+        price: 2.5
+    },
+    {
+        name: "Pamonha",
+        description: "Bem quentinha",
+        price: 1.5
+    },
+    {
+        name: "Milho cozido",
+        description: "Muito bom!",
+        price: 2.0
+    },
+    {
+        name: "Milho assado",
+        description: "Na brasa",
+        price: 2.5
+    }
 ];
 
-const seller = { name: "Seu chico" };
+const seller = { name: "Seeuu chico" };
 
 class PurchaseScreen extends React.Component {
   static navigationOptions = {
@@ -75,6 +105,7 @@ class PurchaseScreen extends React.Component {
   onAmountChange(i, quantidade) {
     console.log('onquantidadeChange', quantidade);
     console.log(this.state.compra);
+    if (!quantidade) return;
     if (!this.state.vendedor) return;
     const produtos = Object.values(this.state.vendedor.produtos);
     const subtotal = produtos[i].preco * Number(quantidade);
@@ -85,7 +116,7 @@ class PurchaseScreen extends React.Component {
     };
 
     let copiaCompras = [...this.state.compra];
-    if (copiaCompras.filter(e => e.nome == novoItem.nome).length){
+    if (copiaCompras.filter(e => e && e.nome == novoItem.nome).length){
         copiaCompras = copiaCompras.map((item) => {
             if (item.nome == novoItem.nome){
                 item.quantidade = novoItem.quantidade;
@@ -135,7 +166,7 @@ class PurchaseScreen extends React.Component {
     }
 
     return (
-      <View style={styles.mainContent}>
+      <KeyboardAvoidingView style={styles.mainContent} behavior={'padding'}>
         <Header onPressBack={() => this.props.navigation.navigate("Home")} />
         <ProfileHeader seller={seller} />
         <ScrollView style={{ marginBottom: 60 }}>
@@ -164,7 +195,7 @@ class PurchaseScreen extends React.Component {
             onPress={() => this.buy()}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

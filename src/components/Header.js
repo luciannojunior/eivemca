@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from "react-native";
+import { Icon } from 'react-native-elements';
 
 const styles = StyleSheet.create({
     viewStyle: {
@@ -11,23 +12,19 @@ const styles = StyleSheet.create({
         elevation: 1,
         position: 'relative'
     },
-    textStyle: {
-        fontSize: 20,
-        color: '#000',
-        fontWeight: 'bold',
+    iconStyle: {
         paddingLeft: 20,
-        marginTop: 20
+        marginTop: 30
     }
 });
 
 const Header = (props) => {
     return(
         <View style={styles.viewStyle}>
-            <Text
-                onPress={() => props.onPressBack()}
-                style={styles.textStyle}>
-                    Back
-            </Text>
+            <Icon name='keyboard-arrow-left'
+                  size={35}
+                  onPress={() => props.onPressBack()}
+                  style={styles.iconStyle}/>
         </View>
     );
 }
