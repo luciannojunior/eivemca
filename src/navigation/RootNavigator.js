@@ -20,6 +20,6 @@ export const RootNavigator = createStackNavigator(
         ConfirmPurchase: ConfirmPurchaseScreen
     },
     {
-        initialRouteName: 'ConfirmPurchase',
+        initialRouteName: 'Home',
     }
 );
