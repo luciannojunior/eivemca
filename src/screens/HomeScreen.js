@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-elements";
 
 const styles = StyleSheet.create({
     mainContent: {
@@ -14,6 +15,11 @@ const styles = StyleSheet.create({
     welcome: {
         fontSize: 24,
         fontWeight: 'bold'
+    },
+    titleStyle: {
+        fontWeight: 'bold',
+        fontSize: 45,
+        marginLeft: 5
     },
     row: {
         flexDirection: 'row'
@@ -42,7 +48,11 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.mainContent}>
-                <Text style={{fontSize: 44}}>Ei! Vem Cá(Logo)</Text>
+                <View style={{flexDirection: 'row'}}>
+                    <Icon name={'megaphone'} color={'black'} type={'entypo'} size={70}/>
+                    <Text style={styles.titleStyle}>Ei! Vem Cá</Text>
+                </View>
+
                 <Text style={styles.welcome}>Bem Vindo!</Text>
                 <View style={styles.row}>
                     <TouchableOpacity

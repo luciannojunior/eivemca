@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         margin: "3%",
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: 'row'
     }
 });
