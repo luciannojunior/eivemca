@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { List, ListItem, Icon } from 'react-native-elements';
+import * as firebase from "firebase";
 import Header from "../../components/Header";
 
 const styles = StyleSheet.create({
@@ -47,9 +48,17 @@ class SearchScreen extends React.Component {
     static navigationOptions = {
         header: null
     };
+
+    state = {
+        sellers: [],
+        searchText: ''
+    }
     
     componentWillMount(){
-        this.state = { searchText: '' };
+        firebase.database().ref('vendedores').on('value', (snap)=>{
+            const sellers = snap.val();
+            this.setState({sellers});
+        })
     }
 
     onClear() {
@@ -64,10 +73,16 @@ class SearchScreen extends React.Component {
       this.state.searchText = text;
     }
 
+    selectSeller(seller) {
+        // Joga o vendedor atual no firebase
+        this.props.navigation.navigate("Purchase", seller);
+    }
+
     render() {
+        const { sellers } = this.state;
         return (
             <View style={styles.mainContent}>
-              <Header />
+              <Header onPressBack={() => this.props.navigation.navigate("Home")} />
               <View style={styles.inputContainer}>
                 <Text style={styles.font16}>Buscar: </Text>
                 <TextInput
@@ -85,7 +100,8 @@ class SearchScreen extends React.Component {
                   sellers.map((item, i) => (
                     <ListItem
                       key={i}
-                      title={item.name}
+                      title={item.nome}
+                      onPress={() => { this.selectSeller(item) }}
                     />
                   ))
                 }

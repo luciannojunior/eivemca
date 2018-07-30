@@ -46,6 +46,11 @@ class ConfirmPurchaseScreen extends React.Component {
         });
     }
 
+    confirmPurchase() {
+        // Mostrar um alert
+        this.props.navigation.navigate('Home');
+    }
+
     render() {
         return (
             <View style={styles.mainContent}>
@@ -75,6 +80,7 @@ class ConfirmPurchaseScreen extends React.Component {
                         transparent={true}
                         title='Confirmar'
                         leftIcon={{name: 'megaphone', color: 'green', type: 'entypo'}}
+                        onPress={() => this.confirmPurchase()}
                     />
                 </View>
             </View>

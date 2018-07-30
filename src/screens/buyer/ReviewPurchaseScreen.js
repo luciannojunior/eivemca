@@ -78,12 +78,21 @@ class ReviewPurchaseScreen extends React.Component {
         header: null
     };
 
+    componentWillMount() {
+        // Pegar o ultimo pedido realizado
+    }
+
     getTotalPrice() {
         let total = 0;
         products.forEach((item) => {
             total += (item.amount*item.price);
         })
         return total;
+    }
+
+    confirmOrder() {
+        // Decide ai oq fazer
+        this.props.navigation.navigate('ConfirmPurchase');
     }
 
     render() {
@@ -119,6 +128,7 @@ class ReviewPurchaseScreen extends React.Component {
                         transparent={true}
                         title='Realizar compra'
                         leftIcon={{name: 'megaphone', color: 'green', type: 'entypo'}}
+                        onPress={() => this.confirmOrder()}
                     />
                 </View>
             </View>
