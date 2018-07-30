@@ -173,12 +173,14 @@ class ReviewPurchaseScreen extends React.Component {
                   type: "entypo"
                 }}
                 key={i}
-                title={produto.nome + " (" + formataPreco(produto.preco) + ")"}
+                title={produto.nome}
                 textInput={true}
                 textInputValue={formataPreco(produto.subtotal)}
                 textInputEditable={false}
                 textInputStyle={{ marginRight: 10 }}
-                subtitle={produto.descricao}
+                subtitle={item.descricao + "\nPreço: "+formataPreco(item.preco) + "."}
+                titleNumberOfLines={5}
+                subtitleNumberOfLines={5}
                 hideChevron
               />
             ))}

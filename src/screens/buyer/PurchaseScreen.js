@@ -174,13 +174,15 @@ class PurchaseScreen extends React.Component {
             {produtos.map((item, i) => (
               <ListItem
                 leftIcon={{ name: "megaphone", color: "green", type: "entypo" }}
+                titleNumberOfLines={5}
+                subtitleNumberOfLines={5}
                 textInput={true}
                 textInputPlaceholder={"Quantidade"}
                 textInputKeyboardType={"numeric"}
                 textInputOnChangeText={amount => this.onAmountChange(i, amount)}
                 key={i}
-                title={item.nome + " ("+formataPreco(item.preco) + ")"}
-                subtitle={item.descricao}
+                title={item.nome}
+                subtitle={item.descricao + "\nPreço: "+formataPreco(item.preco) + "."}
                 hideChevron
               />
             ))}
