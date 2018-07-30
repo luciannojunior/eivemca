@@ -7,6 +7,7 @@ import SearchScreen from "../screens/buyer/SearchScreen";
 import PurchaseScreen from "../screens/buyer/PurchaseScreen";
 import ReviewPurchaseScreen from "../screens/buyer/ReviewPurchaseScreen";
 import ConfirmPurchaseScreen from "../screens/buyer/ConfirmPurchaseScreen";
+import OrdersScreen from "../screens/seller/OrdersScreen";
 
 export const RootNavigator = createStackNavigator(
     {
@@ -17,9 +18,10 @@ export const RootNavigator = createStackNavigator(
         Search: SearchScreen,
         Purchase: PurchaseScreen,
         ReviewPurchase: ReviewPurchaseScreen,
-        ConfirmPurchase: ConfirmPurchaseScreen
+        ConfirmPurchase: ConfirmPurchaseScreen,
+        Orders: OrdersScreen
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'Orders',
     }
 );

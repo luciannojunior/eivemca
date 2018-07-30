@@ -56,7 +56,9 @@ class SellerMainScreen extends React.Component {
               type="entypo"
               color="green"
             />
-            <Text style={styles.fontSizeText}>Pedidos e Rotas</Text>
+            <Text
+                onPress={() => this.props.navigation.navigate("Orders")}
+                style={styles.fontSizeText}>Pedidos e Rotas</Text>
           </View>
           <View style={styles.inputContainer}>
             <Icon
