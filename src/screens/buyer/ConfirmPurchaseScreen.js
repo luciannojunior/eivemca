@@ -40,6 +40,7 @@ class ConfirmPurchaseScreen extends React.Component {
     }
 
     componentWillMount() {
+        
         this.setState({
             rating: 0,
             observation: ""

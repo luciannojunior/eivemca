@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { Alert, View, StyleSheet, Text, ScrollView } from "react-native";
 import { List, ListItem, Button, Input } from "react-native-elements";
 import * as firebase from "firebase";
 import ProfileHeader from "../../components/ProfileHeader";
@@ -54,37 +54,93 @@ class PurchaseScreen extends React.Component {
     header: null
   };
 
+  state = {
+      vendedor: null,
+      compra: []
+  };
+
   componentWillMount() {
     const nome = this.props.navigation.getParam("nome");
     firebase
       .database()
       .ref("vendedores")
       .on("value", snap => {
-          console.log(snap.val());
-        const vendedor = Object.valued(snap.val()).filter(
+        const vendedor = Object.values(snap.val()).filter(
           o => o.nome == nome
         )[0];
         this.setState({ vendedor });
       });
   }
 
-  onAmountChange(productIndex, amount) {
-    products[productIndex].amount = amount;
+  onAmountChange(i, quantidade) {
+    console.log('onquantidadeChange', quantidade);
+    console.log(this.state.compra);
+    if (!this.state.vendedor) return;
+    const produtos = Object.values(this.state.vendedor.produtos);
+    const subtotal = produtos[i].preco * Number(quantidade);
+    const novoItem = {
+        ...produtos[i],
+        quantidade,
+        subtotal
+    };
+
+    let copiaCompras = [...this.state.compra];
+    if (copiaCompras.filter(e => e.nome == novoItem.nome).length){
+        copiaCompras = copiaCompras.map((item) => {
+            if (item.nome == novoItem.nome){
+                item.quantidade = novoItem.quantidade;
+                item.subtotal = novoItem.subtotal;
+            }
+            if (!quantidade || quantidade == 0){
+                return null;
+            }
+            return item;
+        });
+    } else {
+        copiaCompras.push(novoItem);
+    }
+    this.setState({...this.state, compra: copiaCompras});
   }
 
-  buy() {
-    // Criar um pedido no firebase
-    this.props.navigation.navigate("ReviewPurchase");
+  async buy() {
+    const a = new Date();
+    const novoPedido = {
+        produtos: this.state.compra,
+        nome: 'João Coutinho',
+        endereco: 'Avenida Juscelino Kubitscheck, 699',
+        horario: a.getHours() + ':' + a.getMinutes(),
+        entregue: false,
+        avaliacao: null
+    };
+    const { key } = await firebase
+      .database()
+      .ref()
+      .child('pedidos')
+      .push(novoPedido);
+    
+      console.log('KEY', key);
+      
+    this.props.navigation.navigate("ReviewPurchase", {key});
   }
 
   render() {
+    const produtos = this.state.vendedor ? Object.values(this.state.vendedor.produtos) || [] : [];
+
+    const formataPreco = (preco) => {
+        if (preco == 0){
+            preco = "000";
+        }
+        const reverted = ("" + preco).split("").reverse().join("");
+        return "R$ " + (reverted.substring(0,2) + "," + reverted.substring(2,reverted.length)).split("").reverse().join("");
+    }
+
     return (
       <View style={styles.mainContent}>
         <Header onPressBack={() => this.props.navigation.navigate("Home")} />
         <ProfileHeader seller={seller} />
         <ScrollView style={{ marginBottom: 60 }}>
           <List>
-            {products.map((item, i) => (
+            {produtos.map((item, i) => (
               <ListItem
                 leftIcon={{ name: "megaphone", color: "green", type: "entypo" }}
                 textInput={true}
@@ -92,8 +148,8 @@ class PurchaseScreen extends React.Component {
                 textInputKeyboardType={"numeric"}
                 textInputOnChangeText={amount => this.onAmountChange(i, amount)}
                 key={i}
-                title={item.name + " (R$ " + item.price + ")"}
-                subtitle={item.description}
+                title={item.nome + " ("+formataPreco(item.preco) + ")"}
+                subtitle={item.descricao}
                 hideChevron
               />
             ))}

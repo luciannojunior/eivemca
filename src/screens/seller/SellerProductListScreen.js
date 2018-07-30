@@ -50,7 +50,7 @@ class SellerProductListScreen extends React.Component {
   };
 
   componentWillMount() {
-    const ref = firebase.database().ref("vendedor/produtos");
+    const ref = firebase.database().ref("vendedores/0/produtos");
     ref.on("value", value => {
       this.setState({ products: Object.values(value.val() || {}) });
     });
