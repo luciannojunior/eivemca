@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, TextInput } from "react-native";
+import { View, StyleSheet, Text, TextInput, KeyboardAvoidingView } from "react-native";
 import { Rating, Button } from 'react-native-elements';
 import Header from "../../components/Header";
 import ProfileHeader from "../../components/ProfileHeader";
@@ -53,11 +53,12 @@ class ConfirmPurchaseScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.mainContent}>
-                <Header onPressBack={() => this.props.navigation.navigate('Home')} />
+            <KeyboardAvoidingView style={styles.mainContent} behavior={'padding'}>
+                <Header onPressBack={() => this.props.navigation.navigate('ReviewPurchase')} />
                 <ProfileHeader seller={seller} />
                 <Rating
                     showRating
+                    imageSize={40}
                     onFinishRating={this.ratingCompleted.bind(this)}
                     style={{ paddingVertical: 10 }}/>
 
@@ -83,7 +84,7 @@ class ConfirmPurchaseScreen extends React.Component {
                         onPress={() => this.confirmPurchase()}
                     />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

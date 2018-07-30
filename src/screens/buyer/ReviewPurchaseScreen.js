@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView} from "react-native";
+import { View, StyleSheet, Text, ScrollView, KeyboardAvoidingView} from "react-native";
 import { List, ListItem, Button, Input } from 'react-native-elements';
 import Header from "../../components/Header";
 import ProfileHeader from "../../components/ProfileHeader";
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     bottomView:{
         width: '100%',
-        height: 60,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
@@ -97,8 +97,8 @@ class ReviewPurchaseScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.mainContent}>
-                <Header onPressBack={() => this.props.navigation.navigate('Home')} />
+            <KeyboardAvoidingView behaviour={'padding'} style={styles.mainContent}>
+                <Header onPressBack={() => this.props.navigation.navigate('Purchase')} />
                 <ProfileHeader seller={seller} />
                 <ScrollView style={{marginBottom: 65}}>
                     <List>
@@ -131,7 +131,7 @@ class ReviewPurchaseScreen extends React.Component {
                         onPress={() => this.confirmOrder()}
                     />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

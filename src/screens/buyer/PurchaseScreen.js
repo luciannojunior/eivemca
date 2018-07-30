@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView, KeyboardAvoidingView } from "react-native";
 import { List, ListItem, Button, Input } from "react-native-elements";
 import * as firebase from "firebase";
 import ProfileHeader from "../../components/ProfileHeader";
@@ -44,10 +44,40 @@ const products = [
     name: "Milho assado",
     description: "Na brasa",
     price: 2.5
-  }
+  },
+    {
+        name: "Pamonha",
+        description: "Bem quentinha",
+        price: 1.5
+    },
+    {
+        name: "Milho cozido",
+        description: "Muito bom!",
+        price: 2.0
+    },
+    {
+        name: "Milho assado",
+        description: "Na brasa",
+        price: 2.5
+    },
+    {
+        name: "Pamonha",
+        description: "Bem quentinha",
+        price: 1.5
+    },
+    {
+        name: "Milho cozido",
+        description: "Muito bom!",
+        price: 2.0
+    },
+    {
+        name: "Milho assado",
+        description: "Na brasa",
+        price: 2.5
+    }
 ];
 
-const seller = { name: "Seu chico" };
+const seller = { name: "Seeuu chico" };
 
 class PurchaseScreen extends React.Component {
   static navigationOptions = {
@@ -61,7 +91,7 @@ class PurchaseScreen extends React.Component {
       .ref("vendedores")
       .on("value", snap => {
           console.log(snap.val());
-        const vendedor = Object.valued(snap.val()).filter(
+        const vendedor = Object.values(snap.val()).filter(
           o => o.nome == nome
         )[0];
         this.setState({ vendedor });
@@ -79,7 +109,7 @@ class PurchaseScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainContent}>
+      <KeyboardAvoidingView style={styles.mainContent} behavior={'padding'}>
         <Header onPressBack={() => this.props.navigation.navigate("Home")} />
         <ProfileHeader seller={seller} />
         <ScrollView style={{ marginBottom: 60 }}>
@@ -108,7 +138,7 @@ class PurchaseScreen extends React.Component {
             onPress={() => this.buy()}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
