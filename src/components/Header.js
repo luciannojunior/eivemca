@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
         position: 'relative'
     },
     iconStyle: {
-        paddingLeft: 20,
-        marginTop: 30
+        paddingLeft: 25
     }
 });
 
@@ -22,7 +21,7 @@ const Header = (props) => {
     return(
         <View style={styles.viewStyle}>
             <Icon name='keyboard-arrow-left'
-                  size={35}
+                  size={45}
                   onPress={() => props.onPressBack()}
                   style={styles.iconStyle}/>
         </View>

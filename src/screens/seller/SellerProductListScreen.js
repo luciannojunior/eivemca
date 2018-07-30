@@ -60,11 +60,11 @@ class SellerProductListScreen extends React.Component {
     const { products } = this.state;
 
     const formataPreco = (preco) => {
-        if (preco == 0){
-            preco = "000";
-        }
-        const reverted = ("" + preco).split("").reverse().join("");
-        return "R$ " + (reverted.substring(0,2) + "," + reverted.substring(2,reverted.length)).split("").reverse().join("");
+      if (preco == 0) {
+        preco = "000";
+      }
+      const reverted = ("" + preco).split("").reverse().join("");
+      return "R$ " + (reverted.substring(0, 2) + "," + reverted.substring(2, reverted.length)).split("").reverse().join("");
     }
 
     return (
@@ -86,9 +86,9 @@ class SellerProductListScreen extends React.Component {
                       type="entypo"
                       color="green"
                     />
-                    <Text style={styles.productList}>{product.nome}</Text>
+                    <Text style={styles.productList}>{product.nome} </Text>
                     <Text style={styles.productPrice}>
-                      {formataPreco(product.preco)}
+                       - {formataPreco(product.preco)}
                     </Text>
                   </View>
                 );

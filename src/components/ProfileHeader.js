@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        height: "40%",
+        height: "30%",
         elevation: 1,
         position: 'relative'
     },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const ProfileHeader = (props) => {
     return(
         <View style={styles.viewStyle}>
-            <Text style={styles.textStyle}>{props.seller.name}</Text>
+            <Text style={styles.textStyle}>{props.seller.nome}</Text>
             <Text style={styles.dateStyle}>{props.seller.date}</Text>
         </View>
     );

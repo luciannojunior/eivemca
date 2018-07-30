@@ -167,8 +167,8 @@ class PurchaseScreen extends React.Component {
 
     return (
       <KeyboardAvoidingView style={styles.mainContent} behavior={'padding'}>
-        <Header onPressBack={() => this.props.navigation.navigate("Home")} />
-        <ProfileHeader seller={seller} />
+        <Header onPressBack={() => this.props.navigation.navigate("Search")} />
+        <ProfileHeader seller={this.state.vendedor} />
         <ScrollView style={{ marginBottom: 60 }}>
           <List>
             {produtos.map((item, i) => (

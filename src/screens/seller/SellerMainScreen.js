@@ -28,7 +28,7 @@ class SellerMainScreen extends React.Component {
   };
 
   render() {
-    const seller = { name: "Rafael" };
+    const seller = { nome: "Robson da Pamonha" };
 
     return (
       <View style={styles.mainContent}>

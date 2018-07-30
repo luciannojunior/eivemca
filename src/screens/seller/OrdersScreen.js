@@ -54,7 +54,7 @@ const orders = [
     }
 ];
 
-const seller = { name: "Pedidos" };
+const seller = { nome: "Pedidos" };
 
 class OrdersScreen extends React.Component {
     static navigationOptions = {
@@ -93,7 +93,7 @@ class OrdersScreen extends React.Component {
             if(i==0) content += arrayProdutos[i].nome + ' (' + arrayProdutos[i].quantidade + ')';
             else content += ', ' + arrayProdutos[i].nome + ' (' + arrayProdutos[i].quantidade + ')';
         }
-        content += '.\nTotal: R$ ' + formataPreco(this.getTotalPrice(order)) + '.';
+        content += '.\nTotal: ' + formataPreco(this.getTotalPrice(order)) + '.';
         return content;
     }
 

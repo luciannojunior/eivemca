@@ -6,7 +6,8 @@ import Header from "../../components/Header";
 
 const styles = StyleSheet.create({
     mainContent: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#fff'
     },
     inputText: {
         height: 50,
@@ -33,15 +34,15 @@ const styles = StyleSheet.create({
 
 
 const sellers = [
-  {
-    name: 'Vendedor dee pamonha'
-  },
-  {
-    name: 'Vendedor de cocada'
-  },
-  {
-    name: 'Vendedor de milho'
-  }
+    {
+        name: 'Vendedor dee pamonha'
+    },
+    {
+        name: 'Vendedor de cocada'
+    },
+    {
+        name: 'Vendedor de milho'
+    }
 ]
 
 class SearchScreen extends React.Component {
@@ -53,11 +54,11 @@ class SearchScreen extends React.Component {
         sellers: [],
         searchText: ''
     }
-    
-    componentWillMount(){
-        firebase.database().ref('vendedores').on('value', (snap)=>{
+
+    componentWillMount() {
+        firebase.database().ref('vendedores').on('value', (snap) => {
             const sellers = snap.val();
-            this.setState({sellers});
+            this.setState({ sellers });
         })
     }
 
@@ -66,11 +67,11 @@ class SearchScreen extends React.Component {
     }
 
     search() {
-      console.log(this.state.searchText);
+        console.log(this.state.searchText);
     }
 
     onTextChange(text) {
-      this.state.searchText = text;
+        this.state.searchText = text;
     }
 
     selectSeller(seller) {
@@ -82,30 +83,30 @@ class SearchScreen extends React.Component {
         const { sellers } = this.state;
         return (
             <View style={styles.mainContent}>
-              <Header onPressBack={() => this.props.navigation.navigate("Home")} />
-              <View style={styles.inputContainer}>
-                <Text style={styles.font16}>Buscar: </Text>
-                <TextInput
-                    style={styles.inputText}
-                    onChangeText={(text) => this.onTextChange(text)}
-                />
-                <Icon
-                  name='search'
-                  color='#000000'
-                  size={30}
-                  onPress={() => this.search()} />
-              </View>
-              <List>
-                {
-                  sellers.map((item, i) => (
-                    <ListItem
-                      key={i}
-                      title={item.nome}
-                      onPress={() => { this.selectSeller(item) }}
+                <Header onPressBack={() => this.props.navigation.navigate("Home")} />
+                <View style={styles.inputContainer}>
+                    <Text style={styles.font16}>Buscar: </Text>
+                    <TextInput
+                        style={styles.inputText}
+                        onChangeText={(text) => this.onTextChange(text)}
                     />
-                  ))
-                }
-              </List>
+                    <Icon
+                        name='search'
+                        color='#000000'
+                        size={30}
+                        onPress={() => this.search()} />
+                </View>
+                <List>
+                    {
+                        sellers.map((item, i) => (
+                            <ListItem
+                                key={i}
+                                title={item.nome}
+                                onPress={() => { this.selectSeller(item) }}
+                            />
+                        ))
+                    }
+                </List>
             </View>
         );
     }

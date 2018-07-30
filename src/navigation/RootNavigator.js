@@ -22,6 +22,6 @@ export const RootNavigator = createStackNavigator(
         Orders: OrdersScreen
     },
     {
-        initialRouteName: 'Orders',
+        initialRouteName: 'Home',
     }
 );

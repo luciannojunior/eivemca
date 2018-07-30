@@ -161,7 +161,7 @@ class ReviewPurchaseScreen extends React.Component {
 
     return (
       <KeyboardAvoidingView behaviour={"padding"} style={styles.mainContent}>
-        <Header onPressBack={() => this.props.navigation.navigate("Home")} />
+        <Header onPressBack={() => this.props.navigation.navigate("Purchase")} />
         <ProfileHeader seller={seller} />
         <ScrollView style={{ marginBottom: 65 }}>
           <List>
